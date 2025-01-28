@@ -5,6 +5,7 @@ from app.api.controllers.task.task_controller import router as task_router
 from app.api.controllers.login.login_controller import router as login_router 
 from app.core.middleware.auth import JWTAuthenticationMiddleware
 from app.core.middleware.errorHandling import ErrorHandlingMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -15,6 +16,15 @@ async def lifespan(app: FastAPI):
     print("Application is shutting down...")
 
 app = FastAPI(lifespan=lifespan)
+
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  
+#     allow_credentials=True,
+#     allow_methods=["*"], 
+#     allow_headers=["*"], 
+# )
 
 app.add_middleware(JWTAuthenticationMiddleware)
 app.add_middleware(ErrorHandlingMiddleware)

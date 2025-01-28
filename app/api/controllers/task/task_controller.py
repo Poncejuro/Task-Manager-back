@@ -30,3 +30,34 @@ async def create_task(task_data: TaskCreateSchema, db: AsyncSession = Depends(ge
         return new_task
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al crear la tarea: {str(e)}")
+    
+@router.put("/tasks/{task_id}", response_model=TaskSchema)
+async def update_task(task_id: int, task_data: TaskCreateSchema, db: AsyncSession = Depends(get_db)):
+    task_service = TaskService(db)
+    
+    try:
+        updated_task = await task_service.update_task(task_id, task_data)
+        
+        if not updated_task:
+            raise HTTPException(status_code=404, detail="Tarea no encontrada")
+        
+        return updated_task 
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al actualizar la tarea: {str(e)}")
+    
+@router.delete("/tasks/{task_id}")
+async def delete_task(task_id: int, db: AsyncSession = Depends(get_db)):
+    task_service = TaskService(db)
+    
+    try:
+        deleted_task = await task_service.delete_task(task_id)
+        
+        if not deleted_task:
+            raise HTTPException(status_code=404, detail="Tarea no encontrada")
+        
+        return "deleted_task"  
+        
+    except Exception as e:
+       
+        raise HTTPException(status_code=500, detail=f"Error al eliminar la tarea: {str(e)}")
