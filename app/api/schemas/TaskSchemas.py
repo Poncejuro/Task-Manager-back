@@ -4,6 +4,7 @@ class TaskSchema(BaseModel):
     id: int
     title: str
     description: str
+    status: str
 
     class Config:
         orm_mode = True
@@ -11,6 +12,7 @@ class TaskSchema(BaseModel):
 class TaskCreateSchema(BaseModel):
     title: str
     description: str
+    status: str
     
     class Config:
         orm_mode = True 

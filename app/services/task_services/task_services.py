@@ -24,7 +24,8 @@ class TaskService:
         try:
             new_task = Task(
                 title=task_data.title,
-                description=task_data.description
+                description=task_data.description,
+                status = task_data.status
             )
             
             self.db_session.add(new_task)

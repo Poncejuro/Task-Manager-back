@@ -4,6 +4,9 @@ from app.services.auth_service.auth_service import AuthService
 
 class JWTAuthenticationMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
+        if request.method == "OPTIONS":
+            return await call_next(request)
+        
         if request.url.path == "/v1/login":
             return await call_next(request)
 

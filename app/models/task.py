@@ -8,3 +8,4 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     title = Column(String, unique=True, index=True)
     description = Column(String, unique=True, index=True)
+    status = Column(String, unique=False, index=True)
