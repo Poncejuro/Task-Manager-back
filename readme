@@ -1,5 +1,7 @@
+# commands and steps to install
+# add .env in the root (.env in email)
+# the next list, are commands to execute in bash to launch the api
 # docker-compose up
-# add .env to folder (root)
 # python -m venv env
 # .\env\Scripts\Activate
 # pip install -r requirements.txt
