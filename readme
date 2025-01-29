@@ -1,5 +1,8 @@
+# docker-compose up
 # add .env to folder (root)
 # python -m venv env
-# .\env\Scripts\activate 
+# .\env\Scripts\Activate
 # pip install -r requirements.txt
-# docker-compose up
+# uvicorn app.main:app --reload
+
+# credentials are in the .env
